@@ -68,3 +68,18 @@ Var = 20
 print(var)  # Output: 10
 print(Var)  # Output: 20
 print("Case sensitivity example executed successfully.")
+
+# random module to generate random numbers
+import random
+rand_num = random.randint(1, 100)  # Generate a random integer between 1 and 100
+print("Random number between 1 and 100:", rand_num)
+
+# Date and Time module
+import datetime
+now = datetime.datetime.now()
+print("Current date and time:", now) # Output: Current date and time: 2026-01-31 00:15:36.924184
+
+# help() function to get information about a module
+# import math
+# help(math)  # This will display the documentation for the math module
+
