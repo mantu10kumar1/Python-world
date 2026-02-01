@@ -1,0 +1,459 @@
+Python Strings - Complete Documentation
+Table of Contents
+Introduction to Strings
+
+String Creation
+
+String Indexing & Slicing
+
+String Methods
+
+String Operations
+
+String Formatting
+
+Escape Sequences
+
+String Membership
+
+String Immutability
+
+Raw Strings
+
+String Constants
+
+Multiline Strings
+
+1. Introduction to Strings <a name="introduction"></a>
+Definition: A string in Python is an immutable sequence of Unicode characters. Strings are used to represent text-based data and are one of Python's built-in data types.
+
+Key Characteristics:
+
+Immutable (cannot be changed after creation)
+
+Ordered (maintains character sequence)
+
+Iterable (can be looped through)
+
+Support indexing and slicing
+
+python
+# Basic string
+text = "Hello, World!"
+print(type(text))  # <class 'str'>
+print(text)        # Hello, World!
+2. String Creation <a name="creation"></a>
+2.1 Using Quotes
+python
+# Single quotes
+str1 = 'Hello World'
+print(str1)  # Hello World
+
+# Double quotes
+str2 = "Hello World"
+print(str2)  # Hello World
+
+# Triple quotes (for multiline strings)
+str3 = '''This is a
+multiline string'''
+print(str3)
+
+# Mixed quotes
+str4 = "It's a beautiful day"
+str5 = 'He said, "Hello!"'
+2.2 Using str() Constructor
+python
+# Convert other types to strings
+num_str = str(123)       # '123'
+float_str = str(3.14)    # '3.14'
+bool_str = str(True)     # 'True'
+list_str = str([1,2,3])  # '[1, 2, 3]'
+3. String Indexing & Slicing <a name="indexing-slicing"></a>
+3.1 Indexing
+python
+text = "Python"
+
+# Positive indexing (left to right)
+print(text[0])   # 'P'
+print(text[1])   # 'y'
+print(text[5])   # 'n'
+
+# Negative indexing (right to left)
+print(text[-1])  # 'n'
+print(text[-2])  # 'o'
+print(text[-6])  # 'P'
+3.2 Slicing
+python
+text = "Hello, World!"
+
+# Basic slicing: string[start:end:step]
+print(text[0:5])     # 'Hello'   (0 to 4)
+print(text[7:12])    # 'World'   (7 to 11)
+print(text[:5])      # 'Hello'   (start to 4)
+print(text[7:])      # 'World!'  (7 to end)
+print(text[:])       # 'Hello, World!' (full string)
+
+# With step
+print(text[::2])     # 'Hlo ol!'
+print(text[::-1])    # '!dlroW ,olleH' (reverse)
+print(text[0:5:2])   # 'Hlo'
+4. String Methods <a name="methods"></a>
+4.1 Case Conversion Methods
+python
+text = "Hello World"
+
+print(text.upper())        # HELLO WORLD
+print(text.lower())        # hello world
+print("hello world".capitalize())  # Hello world
+print("hello world".title())       # Hello World
+print("HeLLo".swapcase())          # hEllO
+4.2 Search & Find Methods
+python
+text = "Hello World, Hello Python"
+
+# find() - returns index, -1 if not found
+print(text.find("World"))     # 6
+print(text.find("Java"))      # -1
+print(text.find("Hello", 7))  # 13 (start searching from index 7)
+
+# index() - similar to find() but raises ValueError if not found
+print(text.index("World"))    # 6
+# print(text.index("Java"))   # ValueError
+
+# rfind() and rindex() - search from right
+print(text.rfind("Hello"))    # 13
+print(text.rindex("Hello"))   # 13
+
+# count() - count occurrences
+print(text.count("Hello"))    # 2
+print(text.count("l"))        # 4
+4.3 Check Methods (Returns Boolean)
+python
+text1 = "Hello123"
+text2 = "HELLO"
+text3 = "hello"
+text4 = "123"
+text5 = "   "
+text6 = "Hello World"
+
+print(text1.isalnum())     # True (alphanumeric)
+print(text2.isalpha())     # True (alphabetic)
+print(text4.isdigit())     # True (digits only)
+print(text5.isspace())     # True (whitespace only)
+print(text6.islower())     # False
+print(text2.isupper())     # True
+print(text6.istitle())     # True (Title Case)
+print(text6.startswith("Hello"))  # True
+print(text6.endswith("World"))    # True
+4.4 Strip & Replace Methods
+python
+text = "   Hello World   "
+text2 = "Hello Hello Hello"
+
+# Stripping whitespace
+print(text.strip())        # "Hello World"
+print(text.lstrip())       # "Hello World   "
+print(text.rstrip())       # "   Hello World"
+
+# Stripping specific characters
+text3 = "***Hello***"
+print(text3.strip("*"))    # "Hello"
+
+# Replace
+print(text2.replace("Hello", "Hi"))        # "Hi Hi Hi"
+print(text2.replace("Hello", "Hi", 2))     # "Hi Hi Hello" (replace first 2)
+4.5 Split & Join Methods
+python
+# Splitting
+text = "apple,banana,cherry"
+print(text.split(","))            # ['apple', 'banana', 'cherry']
+print("Hello World".split())      # ['Hello', 'World'] (default: whitespace)
+print("one,two,three".split(",", 1))  # ['one', 'two,three'] (maxsplit=1)
+
+# Joining
+words = ['Python', 'is', 'awesome']
+print(" ".join(words))       # "Python is awesome"
+print("-".join(words))       # "Python-is-awesome"
+print("".join(words))        # "Pythonisawesome"
+
+# Splitlines
+multiline = "Line1\nLine2\r\nLine3"
+print(multiline.splitlines())  # ['Line1', 'Line2', 'Line3']
+4.6 Format Checking & Padding
+python
+# Padding
+text = "Hello"
+print(text.ljust(10))       # 'Hello     '
+print(text.rjust(10))       # '     Hello'
+print(text.center(10))      # '  Hello   '
+print(text.center(10, "*")) # '**Hello***'
+
+# Zfill (zero fill)
+num = "42"
+print(num.zfill(5))         # '00042'
+
+# Partition
+text = "python-programming-language"
+print(text.partition("-"))  # ('python', '-', 'programming-language')
+print(text.rpartition("-")) # ('python-programming', '-', 'language')
+5. String Operations <a name="operations"></a>
+5.1 Concatenation
+python
+str1 = "Hello"
+str2 = "World"
+
+# Using + operator
+result = str1 + " " + str2
+print(result)  # Hello World
+
+# Using += operator
+str3 = "Python"
+str3 += " Programming"
+print(str3)    # Python Programming
+
+# Concatenation with other types (requires conversion)
+num = 10
+# print("Number: " + num)  # TypeError
+print("Number: " + str(num))  # Correct
+5.2 Repetition
+python
+text = "Hi"
+print(text * 3)        # HiHiHi
+print("-" * 20)        # --------------------
+5.3 Comparison Operations
+python
+# Comparison returns Boolean
+print("apple" == "apple")    # True
+print("apple" != "orange")   # True
+print("apple" < "banana")    # True (lexicographical order)
+print("apple" > "Apple")     # True (lowercase > uppercase in ASCII)
+print("abc" <= "abcd")       # True
+
+# Case-insensitive comparison
+print("Hello".lower() == "hello".lower())  # True
+6. String Formatting <a name="formatting"></a>
+6.1 % Formatting (Old Style)
+python
+name = "Alice"
+age = 25
+
+# Basic formatting
+print("Name: %s, Age: %d" % (name, age))  # Name: Alice, Age: 25
+print("Percentage: %.2f%%" % 99.567)      # Percentage: 99.57%
+
+# Format specifiers
+# %s - string, %d - integer, %f - float, %x - hex
+6.2 str.format() Method
+python
+name = "Bob"
+age = 30
+
+# Positional arguments
+print("Name: {}, Age: {}".format(name, age))  # Name: Bob, Age: 30
+
+# Indexed arguments
+print("{1} is {0} years old".format(age, name))  # Bob is 30 years old
+
+# Named arguments
+print("Name: {n}, Age: {a}".format(n=name, a=age))
+
+# Formatting options
+print("Price: ${:.2f}".format(49.99))        # Price: $49.99
+print("Number: {:05d}".format(42))           # Number: 00042
+print("Hex: 0x{:X}".format(255))             # Hex: 0xFF
+6.3 f-strings (Python 3.6+)
+python
+name = "Charlie"
+age = 35
+height = 5.9
+
+# Basic f-string
+print(f"Name: {name}, Age: {age}")  # Name: Charlie, Age: 35
+
+# Expressions inside f-strings
+print(f"Next year, I'll be {age + 1}")  # Next year, I'll be 36
+
+# Formatting options
+print(f"Height: {height:.2f} feet")      # Height: 5.90 feet
+print(f"Price: ${49.99:,.2f}")           # Price: $49.99
+print(f"Binary: {10:b}")                 # Binary: 1010
+print(f"Hex: 0x{255:X}")                 # Hex: 0xFF
+
+# Multiline f-string
+message = f"""
+Name: {name}
+Age: {age}
+Height: {height:.1f}
+"""
+print(message)
+7. Escape Sequences <a name="escape-sequences"></a>
+python
+# Common escape sequences
+print("Hello\nWorld")       # New line
+print("Hello\tWorld")       # Tab
+print("She said, \"Hello\"") # Double quote
+print('It\'s raining')      # Single quote
+print("Path: C:\\Users")    # Backslash
+print("Hello\rWorld")       # Carriage return
+print("Hello\bWorld")       # Backspace
+print("\x48\x65\x6c\x6c\x6f") # Hexadecimal: Hello
+print("\u0041")            # Unicode: A
+print("\U0001F600")        # Unicode: 😀 (emoji)
+
+# Using raw string to ignore escape sequences
+print(r"Hello\nWorld")      # Hello\nWorld (literally)
+8. String Membership <a name="membership"></a>
+python
+text = "Python Programming"
+
+# in operator
+print("Python" in text)     # True
+print("Java" in text)       # False
+print("pro" in text)        # False (case-sensitive)
+print("pro".lower() in text.lower())  # True
+
+# not in operator
+print("Java" not in text)   # True
+
+# Checking individual characters
+print('P' in text)          # True
+print('z' in text)          # False
+9. String Immutability <a name="immutability"></a>
+python
+text = "Hello"
+
+# Strings are immutable - cannot modify in place
+# text[0] = 'J'  # TypeError: 'str' object does not support item assignment
+
+# Instead, create new strings
+text = "J" + text[1:]  # Create new string
+print(text)            # Jello
+
+# Or use methods that return new strings
+new_text = text.replace('J', 'H')
+print(new_text)        # Hello
+10. Raw Strings <a name="raw-strings"></a>
+python
+# Raw strings treat backslashes as literal characters
+path = r"C:\Users\Name\Documents"
+print(path)  # C:\Users\Name\Documents
+
+regex_pattern = r"\d+\.\d+"
+print(regex_pattern)  # \d+\.\d+
+
+# Without raw string
+print("C:\\Users\\Name\\Documents")  # Same as raw string but with double backslashes
+11. String Constants <a name="constants"></a>
+python
+import string
+
+print(string.ascii_letters)    # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.ascii_lowercase)  # abcdefghijklmnopqrstuvwxyz
+print(string.ascii_uppercase)  # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.digits)           # 0123456789
+print(string.hexdigits)        # 0123456789abcdefABCDEF
+print(string.octdigits)        # 01234567
+print(string.punctuation)      # !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+print(string.whitespace)       # space, tab, newline, etc.
+print(string.printable)        # All printable characters
+12. Multiline Strings <a name="multiline"></a>
+python
+# Using triple quotes
+multiline = """This is a
+multiline string
+in Python"""
+print(multiline)
+
+# Preserving formatting
+html = """
+<html>
+    <head>
+        <title>Page</title>
+    </head>
+    <body>
+        <h1>Hello</h1>
+    </body>
+</html>
+"""
+print(html)
+
+# Using parentheses for implicit concatenation
+text = ("This is a very long string that "
+        "spans multiple lines using "
+        "parentheses for readability")
+print(text)
+
+# Using backslash for line continuation
+text = "This is a very long string that \
+spans multiple lines using \
+backslash for continuation"
+print(text)
+Practical Examples
+Example 1: Palindrome Checker
+python
+def is_palindrome(s):
+    # Remove spaces and convert to lowercase
+    s = ''.join(s.split()).lower()
+    return s == s[::-1]
+
+print(is_palindrome("A man a plan a canal Panama"))  # True
+print(is_palindrome("Python"))                       # False
+Example 2: Word Count
+python
+def count_words(text):
+    words = text.split()
+    word_count = {}
+    for word in words:
+        word = word.strip('.,!?').lower()
+        word_count[word] = word_count.get(word, 0) + 1
+    return word_count
+
+text = "Hello world! Hello Python. Python is awesome."
+print(count_words(text))
+Example 3: String Validation
+python
+def validate_password(password):
+    if len(password) < 8:
+        return False, "Password too short"
+    if not any(c.isupper() for c in password):
+        return False, "No uppercase letter"
+    if not any(c.islower() for c in password):
+        return False, "No lowercase letter"
+    if not any(c.isdigit() for c in password):
+        return False, "No digit"
+    return True, "Valid password"
+
+print(validate_password("Pass123"))
+print(validate_password("Password123"))
+Example 4: Text Processing
+python
+def process_text(text):
+    # Remove punctuation and convert to lowercase
+    import string
+    translator = str.maketrans('', '', string.punctuation)
+    text = text.translate(translator).lower()
+    
+    # Get unique words
+    words = set(text.split())
+    
+    # Sort alphabetically
+    return sorted(words)
+
+sample = "Hello! This is a test. This is only a test."
+print(process_text(sample))
+Summary
+Python strings are versatile and powerful with rich functionality. Key points to remember:
+
+Strings are immutable sequences of Unicode characters
+
+Support extensive methods for manipulation
+
+Multiple formatting options available
+
+Rich set of operations for concatenation, repetition, and comparison
+
+Support for multiline strings and raw strings
+
+Comprehensive slicing and indexing capabilities
+
+Mastering strings is fundamental to Python programming as text processing is a common task in most applications.
